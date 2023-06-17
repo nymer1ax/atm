@@ -20,4 +20,5 @@ public class Transaction {
     private BigDecimal amount;
     private BigDecimal finalBalance;
     private Account account;
+    private String description;
 }

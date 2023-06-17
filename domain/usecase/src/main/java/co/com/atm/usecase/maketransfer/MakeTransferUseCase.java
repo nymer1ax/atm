@@ -20,19 +20,21 @@ public class MakeTransferUseCase {
     private final MakeWithdrawalUseCase makeWithdrawalUseCase;
     private final MakeDepositUseCase makeDepositUseCase;
 
-    public Transaction makeTransaction(Account  account, TransactionType transactionType, BigDecimal amount, BigDecimal finalBalance){
+    public Transaction makeTransaction(Account  account, TransactionType transactionType, BigDecimal amount, BigDecimal finalBalance, String description){
         Transaction transaction = Transaction
                 .builder()
                 .account(account)
                 .transactionType(transactionType)
                 .amount(amount)
                 .finalBalance(finalBalance)
+                .description(description)
                 .build();
         return transactionRepository.save(transaction);
     }
 
     public void makeTransfer(Long sourceAccountId, Long destinationAccountId, BigDecimal amount){
         Account sourceAccount = accountUsecaseUseCase.validateAccountExistence(sourceAccountId);
+        BigDecimal oldBalance = sourceAccount.getBalance();
         Account destinationAccount = accountUsecaseUseCase.validateAccountExistence(destinationAccountId);
 
         checkBalanceUseCase.validateBalance(sourceAccountId, amount);
@@ -43,11 +45,15 @@ public class MakeTransferUseCase {
         BigDecimal newDestinationBalance = destinationAccount.getBalance().add(amount);
         destinationAccount.setBalance(newDestinationBalance);
 
+        String transferDescription = "Transferencia de " + sourceAccount.getAccountNumber() + " a " + destinationAccount.getAccountNumber();
+
         Transaction withdrawalTransaction = makeWithdrawalUseCase.makeWithdrawal(sourceAccountId, newSourceBalance);
         Transaction depositTransaction = makeDepositUseCase.makeDeposit(destinationAccountId, newDestinationBalance);
+        Transaction transfer = this.makeTransaction(sourceAccount, TransactionType.TRANSFER, oldBalance, newSourceBalance ,transferDescription);
 
         sourceAccount.getTransactionHistory().add(withdrawalTransaction);
         destinationAccount.getTransactionHistory().add(depositTransaction);
+        sourceAccount.getTransactionHistory().add(transfer);
 
         accountUsecaseUseCase.saveAccount(sourceAccount);
         accountUsecaseUseCase.saveAccount(destinationAccount);

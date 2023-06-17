@@ -23,7 +23,7 @@ public class MakeWithdrawalUseCase {
         checkBalanceUseCase.validateBalance(accountId, amount);
         BigDecimal newBalance = account.getBalance().subtract(amount);
         account.setBalance(newBalance);
-        Transaction withdrawal = makeTransferUseCase.makeTransaction(account, TransactionType.WITHDRAWAL, amount, newBalance);
+        Transaction withdrawal = makeTransferUseCase.makeTransaction(account, TransactionType.WITHDRAWAL, amount, newBalance, "Withdrawal");
         account.getTransactionHistory().add(withdrawal);
         accountRepository.save(account);
         return withdrawal;

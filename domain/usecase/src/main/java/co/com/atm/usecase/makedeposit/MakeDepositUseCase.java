@@ -28,7 +28,7 @@ public class MakeDepositUseCase {
 
         BigDecimal newBalance = account.getBalance().add(amount);
 
-        Transaction deposit = makeTransferUseCase.makeTransaction(account, TransactionType.DEPOSIT, amount, newBalance);
+        Transaction deposit = makeTransferUseCase.makeTransaction(account, TransactionType.DEPOSIT, amount, newBalance, "Deposit");
 
         account.getTransactionHistory().add(deposit);
 
