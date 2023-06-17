@@ -4,6 +4,7 @@ import co.com.atm.model.account.Account;
 import co.com.atm.model.account.gateways.AccountRepository;
 import co.com.atm.usecase.exceptions.AccountNotFoundException;
 import co.com.atm.usecase.exceptions.InsufficientBalanceException;
+import co.com.atm.usecase.validateaccountexistence.ValidateAccountExistenceUseCase;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
@@ -12,10 +13,10 @@ import java.math.BigDecimal;
 public class CheckBalanceUseCase {
 
     private final AccountRepository accountRepository;
+    private final ValidateAccountExistenceUseCase accountExistenceUseCase;
     public void validateBalance(Long accountId, BigDecimal amount) {
 
-        Account account = accountRepository.findById(accountId)
-                .orElseThrow(() -> new AccountNotFoundException("Account not found with ID: " + accountId));
+        Account account = accountExistenceUseCase.validateAccountExistence(accountId);
 
         BigDecimal currentBalance = account.getBalance();
 

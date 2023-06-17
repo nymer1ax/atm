@@ -7,6 +7,7 @@ import co.com.atm.model.transactiontype.TransactionType;
 import co.com.atm.usecase.checkbalance.CheckBalanceUseCase;
 import co.com.atm.usecase.exceptions.AccountNotFoundException;
 import co.com.atm.usecase.maketransfer.MakeTransferUseCase;
+import co.com.atm.usecase.validateaccountexistence.ValidateAccountExistenceUseCase;
 import lombok.RequiredArgsConstructor;
 
 
@@ -17,9 +18,11 @@ public class MakeDepositUseCase {
     private final AccountRepository accountRepository;
     private final CheckBalanceUseCase checkBalanceUseCase;
     private final MakeTransferUseCase makeTransferUseCase;
+    private final ValidateAccountExistenceUseCase accountExistenceUseCase;
 
     public void makeDeposit(Long accountId, BigDecimal amount) throws AccountNotFoundException {
-        Account account = accountRepository.findById(accountId).orElseThrow(()-> new AccountNotFoundException("Account not found"));
+
+        Account account = accountExistenceUseCase.validateAccountExistence(accountId);
 
         checkBalanceUseCase.validateBalance(accountId, amount);
 
@@ -31,6 +34,8 @@ public class MakeDepositUseCase {
 
         accountRepository.save(account);
     }
+
+
 
 
 }
