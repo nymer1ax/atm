@@ -2,9 +2,8 @@ package co.com.atm.usecase.checkbalance;
 
 import co.com.atm.model.account.Account;
 import co.com.atm.model.account.gateways.AccountRepository;
-import co.com.atm.usecase.exceptions.AccountNotFoundException;
+import co.com.atm.usecase.accountusecase.AccountUsecaseUseCase;
 import co.com.atm.usecase.exceptions.InsufficientBalanceException;
-import co.com.atm.usecase.validateaccountexistence.ValidateAccountExistenceUseCase;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
@@ -12,11 +11,10 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class CheckBalanceUseCase {
 
-    private final AccountRepository accountRepository;
-    private final ValidateAccountExistenceUseCase accountExistenceUseCase;
+    private final AccountUsecaseUseCase accountUsecaseUseCase;
     public void validateBalance(Long accountId, BigDecimal amount) {
 
-        Account account = accountExistenceUseCase.validateAccountExistence(accountId);
+        Account account = accountUsecaseUseCase.validateAccountExistence(accountId);
 
         BigDecimal currentBalance = account.getBalance();
 
