@@ -25,7 +25,7 @@ public class MakeWithdrawalUseCase {
         account.setBalance(newBalance);
         Transaction withdrawal = makeTransferUseCase.makeTransaction(account, TransactionType.WITHDRAWAL, amount, newBalance, "Withdrawal");
         account.getTransactionHistory().add(withdrawal);
-        accountRepository.save(account);
+        accountRepository.saveAccount(account);
         return withdrawal;
     }
 

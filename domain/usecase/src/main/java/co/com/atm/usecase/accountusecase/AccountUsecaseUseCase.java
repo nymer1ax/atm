@@ -13,15 +13,15 @@ public class AccountUsecaseUseCase {
     private final AccountRepository accountRepository;
 
     public Account validateAccountExistence(Long accountId) {
-        return accountRepository.findById(accountId).orElseThrow(() -> new AccountNotFoundException("Account not found"));
+        return accountRepository.findAccountById(accountId).orElseThrow(() -> new AccountNotFoundException("Account not found"));
     }
 
     public Account saveAccount(Account account) {
-        return accountRepository.save(account);
+        return accountRepository.saveAccount(account);
     }
 
     public List<Account> accounts() {
-        return accountRepository.findAll();
+        return accountRepository.findAllAccounts();
     }
 
     public List<Account> otherAccounts(Long accountId) {
@@ -29,7 +29,7 @@ public class AccountUsecaseUseCase {
     }
 
     public List<Account> findAllByIn(List<Account> otherAccounts){
-       return accountRepository.findAllByIn(otherAccounts);
+       return accountRepository.findAllAccountByIdIn(otherAccounts);
     }
 
 }

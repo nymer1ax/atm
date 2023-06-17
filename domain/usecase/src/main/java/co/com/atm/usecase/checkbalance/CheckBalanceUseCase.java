@@ -23,8 +23,4 @@ public class CheckBalanceUseCase {
             throw new InsufficientBalanceException("Insufficient balance in the account. Current balance: " + currentBalance);
         }
     }
-
-    List<Account> getBalances(){
-     return    accountUsecaseUseCase.accounts();
-    }
 }
