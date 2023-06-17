@@ -7,6 +7,7 @@ import co.com.atm.usecase.exceptions.InsufficientBalanceException;
 import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RequiredArgsConstructor
 public class CheckBalanceUseCase {
@@ -21,5 +22,9 @@ public class CheckBalanceUseCase {
         if (currentBalance.compareTo(amount) < 0) {
             throw new InsufficientBalanceException("Insufficient balance in the account. Current balance: " + currentBalance);
         }
+    }
+
+    List<Account> getBalances(){
+     return    accountUsecaseUseCase.accounts();
     }
 }
