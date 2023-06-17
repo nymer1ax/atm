@@ -1,0 +1,38 @@
+# Archivos generados por Gradle
+.gradle/
+build/
+
+# Archivos generados por IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Archivos de configuración de macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Archivos de configuración de Maven
+target/
+
+# Archivos de configuración de Eclipse
+.classpath
+.project
+.settings/
+
+# Archivos de configuración de NetBeans
+nbproject/
+nbbuild/
+dist/
+
+# Otros archivos y directorios comunes a ignorar
+bin/
+logs/
+tmp/
+*.log
+*.swp
+*.bak
+*.zip
+*.tar.gz
