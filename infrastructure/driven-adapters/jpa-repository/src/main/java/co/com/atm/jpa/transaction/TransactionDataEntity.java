@@ -1,6 +1,5 @@
 package co.com.atm.jpa.transaction;
 
-import co.com.atm.jpa.account.AccountDataEntity;
 import co.com.atm.model.transactiontype.TransactionType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,10 +19,10 @@ public class TransactionDataEntity {
     @Enumerated(EnumType.STRING)
     private TransactionType type;
 
-    @Column(precision = 19, scale = 4)
+    @Column(precision = 10, scale = 1)
     private BigDecimal amount;
 
-    @Column(name="final_balance", precision = 19, scale = 4)
+    @Column(name="final_balance", precision = 10, scale = 1)
     private BigDecimal finalBalance;
     @Column(name = "description")
     private String description;

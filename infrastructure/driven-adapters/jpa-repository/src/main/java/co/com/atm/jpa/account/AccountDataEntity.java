@@ -1,13 +1,9 @@
 package co.com.atm.jpa.account;
 
-import co.com.atm.jpa.transaction.TransactionDataEntity;
-import co.com.atm.model.transaction.Transaction;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 @Entity
 @Table(name = "account")
 @Getter
@@ -22,7 +18,7 @@ public class AccountDataEntity {
 
     private String accountNumber;
 
-    @Column(precision = 19, scale = 4)
+    @Column(precision = 10, scale = 1)
     private BigDecimal balance;
 
 

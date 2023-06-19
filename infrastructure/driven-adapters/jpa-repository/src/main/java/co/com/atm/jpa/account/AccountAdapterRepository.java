@@ -2,17 +2,14 @@ package co.com.atm.jpa.account;
 
 import co.com.atm.jpa.helper.AdapterOperations;
 import co.com.atm.jpa.mapper.MapperObject;
-import co.com.atm.jpa.transaction.TransactionDataEntity;
 import co.com.atm.model.account.Account;
 import co.com.atm.model.account.gateways.AccountRepository;
-import co.com.atm.model.transaction.Transaction;
 import jakarta.transaction.Transactional;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Repository
 public class AccountAdapterRepository extends AdapterOperations<Account, AccountDataEntity, Long, AccountDataRepository> implements AccountRepository   {
