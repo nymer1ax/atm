@@ -15,7 +15,6 @@ public class MapperObject {
                 .id(account.getId())
                 .accountNumber(account.getAccountNumber())
                 .balance(account.getBalance())
-                .transactionHistory(mapToTransactionDataEntities(account.getTransactionHistory()))
                 .build();
     }
 
@@ -24,11 +23,14 @@ public class MapperObject {
                 .id(accountDataEntity.getId())
                 .accountNumber(accountDataEntity.getAccountNumber())
                 .balance(accountDataEntity.getBalance())
-                .transactionHistory(mapToTransactions(accountDataEntity.getTransactionHistory()))
                 .build();
     }
 
-    public List<TransactionDataEntity> mapToTransactionDataEntities(List<Transaction> transactions) {
+    public List<Account> mapToAccountList(List<AccountDataEntity> accountDataEntity) {
+        return accountDataEntity.stream().map(this::mapToAccount).collect(Collectors.toList());
+    }
+
+    public List<TransactionDataEntity> mapToTransactionDataEntities(List<Transaction> transactions, Long accountId) {
         return transactions.stream()
                 .map(this::mapToTransactionDataEntity)
                 .collect(Collectors.toList());
@@ -47,6 +49,7 @@ public class MapperObject {
                 .amount(transaction.getAmount())
                 .finalBalance(transaction.getFinalBalance())
                 .description(transaction.getDescription())
+                .accountId(transaction.getAccountId())
                 .build();
     }
 

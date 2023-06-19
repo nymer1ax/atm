@@ -39,12 +39,8 @@ public class AccountAdapterRepository extends AdapterOperations<Account, Account
     @Override
     @Transactional
     public Account saveAccount(Account account) {
-        List<Transaction> transactions = account.getTransactionHistory();
-
-        List<TransactionDataEntity> transactionDataEntities = mapperObject.mapToTransactionDataEntities(transactions);
 
         AccountDataEntity accountDataEntity = mapperObject.mapToAccountDataEntity(account);
-        accountDataEntity.setTransactionHistory(transactionDataEntities);
 
         AccountDataEntity savedAccountDataEntity = repository.save(accountDataEntity);
 
@@ -54,14 +50,8 @@ public class AccountAdapterRepository extends AdapterOperations<Account, Account
     @Override
     public List<Account> findAllAccounts() {
         List<AccountDataEntity> accountDataEntities = repository.findAll();
+        return mapperObject.mapToAccountList(accountDataEntities);
 
-        return accountDataEntities.stream()
-                .map(accountDataEntity -> {
-                    List<TransactionDataEntity> transactionDataEntities = accountDataEntity.getTransactionHistory();
-                    List<Transaction> transactions = mapperObject.mapToTransactions(transactionDataEntities);
-                    return mapperObject.mapToAccount(accountDataEntity);
-                })
-                .collect(Collectors.toList());
     }
 
 

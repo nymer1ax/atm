@@ -22,10 +22,9 @@ public class AccountDataEntity {
 
     private String accountNumber;
 
-    @Column(precision = 19, scale = 4) // Define precision and scale for BigDecimal
+    @Column(precision = 19, scale = 4)
     private BigDecimal balance;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-    private List<TransactionDataEntity> transactionHistory = new ArrayList<>();
+
 
 }

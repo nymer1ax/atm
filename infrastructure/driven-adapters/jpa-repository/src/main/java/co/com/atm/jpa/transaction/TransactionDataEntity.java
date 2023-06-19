@@ -28,7 +28,6 @@ public class TransactionDataEntity {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
-    private AccountDataEntity account;
+    private Long accountId;
 
 }

@@ -18,5 +18,4 @@ public class Account {
     private Long id;
     private String accountNumber;
     private BigDecimal balance;
-    private List<Transaction> transactionHistory;
 }

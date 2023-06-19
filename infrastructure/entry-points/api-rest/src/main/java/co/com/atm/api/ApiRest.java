@@ -6,11 +6,8 @@ import co.com.atm.api.dto.TransferDto;
 import co.com.atm.model.account.Account;
 import co.com.atm.model.transaction.Transaction;
 import co.com.atm.usecase.accountusecase.AccountUsecaseUseCase;
-import co.com.atm.usecase.checkbalance.CheckBalanceUseCase;
 import co.com.atm.usecase.checktransactionhistory.CheckTransactionHistoryUseCase;
-import co.com.atm.usecase.makedeposit.MakeDepositUseCase;
-import co.com.atm.usecase.maketransfer.MakeTransferUseCase;
-import co.com.atm.usecase.makewithdrawal.MakeWithdrawalUseCase;
+import co.com.atm.usecase.transactions.TransactionsUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,9 +21,8 @@ import java.util.List;
 public class ApiRest {
     private final AccountUsecaseUseCase accountUsecaseUseCase;
     private final CheckTransactionHistoryUseCase checkTransactionHistoryUseCase;
-    private final MakeDepositUseCase makeDepositUseCase;
-    private final MakeWithdrawalUseCase makeWithdrawalUseCase;
-    private final MakeTransferUseCase makeTransferUseCase;
+    private final TransactionsUseCase transactionsUseCase;
+
 
     @GetMapping(path = "/accounts")
     public ResponseEntity<List<Account>> getAccount() {
@@ -46,24 +42,24 @@ public class ApiRest {
 
     @GetMapping(path = "/transactions")
     public ResponseEntity<List<Transaction>> getTransactions() {
-        return ResponseEntity.ok(checkTransactionHistoryUseCase.getTransactionHistory());
+        return ResponseEntity.ok(checkTransactionHistoryUseCase.getAll());
     }
 
     @PostMapping(path = "/deposit")
     public ResponseEntity createDeposit(@RequestBody TransactionDto transaction) {
-        makeDepositUseCase.makeDeposit(transaction.getAccountId(), transaction.getAmount());
+        transactionsUseCase.makeDeposit(transaction.getAccountId(), transaction.getAmount());
         return ResponseEntity.accepted().build();
     }
 
     @PostMapping(path = "/withdrawal")
     public ResponseEntity makeWithdrawal(@RequestBody TransactionDto transaction) {
-        makeWithdrawalUseCase.makeWithdrawal(transaction.getAccountId(), transaction.getAmount());
+        transactionsUseCase.makeWithdrawal(transaction.getAccountId(), transaction.getAmount());
         return ResponseEntity.accepted().build();
     }
 
     @PostMapping(path = "/transfer")
     public ResponseEntity makeTransfer(@RequestBody TransferDto transaction) {
-        makeTransferUseCase.makeTransfer(transaction.getSourceAccountId(), transaction.getDestinationAccountId(), transaction.getAmount());
+        transactionsUseCase.makeTransfer(transaction.getSourceAccountId(), transaction.getDestinationAccountId(), transaction.getAmount());
         return ResponseEntity.accepted().build();
     }
 

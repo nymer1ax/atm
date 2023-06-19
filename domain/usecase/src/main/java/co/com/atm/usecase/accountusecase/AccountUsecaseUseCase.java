@@ -24,12 +24,6 @@ public class AccountUsecaseUseCase {
         return accountRepository.findAllAccounts();
     }
 
-    public List<Account> otherAccounts(Long accountId) {
-        return accountRepository.findAllOtherAccounts(accountId);
-    }
 
-    public List<Account> findAllByIn(List<Account> otherAccounts){
-       return accountRepository.findAllAccountByIdIn(otherAccounts);
-    }
 
 }

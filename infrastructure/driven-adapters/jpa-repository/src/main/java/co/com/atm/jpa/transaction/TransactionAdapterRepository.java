@@ -10,11 +10,12 @@ import jakarta.transaction.Transactional;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class TransactionAdapterRepository extends AdapterOperations<Transaction, TransactionDataEntity, Long, TransactionDataRepository> implements TransactionRepository {
 
     private final MapperObject mapperObjects;
-
 
     public TransactionAdapterRepository(TransactionDataRepository repository, ObjectMapper mapper, MapperObject mapperObjects) {
         super(repository, mapper, d -> mapper.map(d, Transaction.class));
@@ -26,11 +27,18 @@ public class TransactionAdapterRepository extends AdapterOperations<Transaction,
     public Transaction saveTransaction(Transaction transaction) {
         TransactionDataEntity transactionDataEntity = mapperObjects.mapToTransactionDataEntity(transaction);
         TransactionDataEntity savedTransactionDataEntity = repository.save(transactionDataEntity);
+        return mapperObjects.mapToTransaction(savedTransactionDataEntity);
+    }
 
-        Account account = mapperObjects.mapToAccount(savedTransactionDataEntity.getAccount());
-        transaction.setAccount(account);
+    @Override
+    public List<Transaction> findAllByAccountId(Long accountId) {
+       List<TransactionDataEntity> dataEntities = repository.findAllByAccountId(accountId);
+        return mapperObjects.mapToTransactions(dataEntities);
+    }
 
-        return transaction;
+    @Override
+    public List<Transaction> findAllTransactions() {
+        return  mapperObjects.mapToTransactions(repository.findAll());
     }
 }
 
