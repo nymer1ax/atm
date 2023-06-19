@@ -1,0 +1,106 @@
+[
+    {
+        "id": 1,
+        "transactionType": "DEPOSIT",
+        "amount": 100.0,
+        "finalBalance": 100.0,
+        "accountId": 1,
+        "description": "Deposit"
+    },
+    {
+        "id": 2,
+        "transactionType": "DEPOSIT",
+        "amount": 100.0,
+        "finalBalance": 100.0,
+        "accountId": 2,
+        "description": "Deposit"
+    },
+    {
+        "id": 3,
+        "transactionType": "DEPOSIT",
+        "amount": 100.0,
+        "finalBalance": 100.0,
+        "accountId": 3,
+        "description": "Deposit"
+    },
+    {
+        "id": 4,
+        "transactionType": "WITHDRAWAL",
+        "amount": 50.0,
+        "finalBalance": 50.0,
+        "accountId": 1,
+        "description": "Withdrawal"
+    },
+    {
+        "id": 5,
+        "transactionType": "WITHDRAWAL",
+        "amount": 50.0,
+        "finalBalance": 50.0,
+        "accountId": 2,
+        "description": "Withdrawal"
+    },
+    {
+        "id": 6,
+        "transactionType": "DEPOSIT",
+        "amount": 150.0,
+        "finalBalance": 250.0,
+        "accountId": 3,
+        "description": "Deposit"
+    },
+    {
+        "id": 7,
+        "transactionType": "TRANSFER",
+        "amount": 100.0,
+        "finalBalance": 50.0,
+        "accountId": 2,
+        "description": "Transferencia de Elmer Fudd a Wile E. Coyote"
+    },
+    {
+        "id": 8,
+        "transactionType": "DEPOSIT",
+        "amount": 80.0,
+        "finalBalance": 130.0,
+        "accountId": 1,
+        "description": "Deposit"
+    },
+    {
+        "id": 9,
+        "transactionType": "DEPOSIT",
+        "amount": 20.0,
+        "finalBalance": 70.0,
+        "accountId": 2,
+        "description": "Deposit"
+    },
+    {
+        "id": 10,
+        "transactionType": "WITHDRAWAL",
+        "amount": 30.0,
+        "finalBalance": 120.0,
+        "accountId": 3,
+        "description": "Withdrawal"
+    },
+    {
+        "id": 11,
+        "transactionType": "WITHDRAWAL",
+        "amount": 100.0,
+        "finalBalance": 20.0,
+        "accountId": 3,
+        "description": "Withdrawal"
+    },
+    {
+        "id": 12,
+        "transactionType": "DEPOSIT",
+        "amount": 150.0,
+        "finalBalance": 280.0,
+        "accountId": 1,
+        "description": "Deposit"
+    },
+    {
+        "id": 13,
+        "transactionType": "TRANSFER",
+        "amount": 120.0,
+        "finalBalance": 100.0,
+        "accountId": 3,
+        "description": "Transferencia de Wile E. Coyote a Daffy Duck"
+    }
+]

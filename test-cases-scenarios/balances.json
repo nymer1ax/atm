@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "accountNumber": "Daffy Duck",
+        "balance": 150.0
+    },
+    {
+        "id": 2,
+        "accountNumber": "Elmer Fudd",
+        "balance": 70.0
+    },
+    {
+        "id": 3,
+        "accountNumber": "Wile E. Coyote",
+        "balance": 100.0
+    }
+]
