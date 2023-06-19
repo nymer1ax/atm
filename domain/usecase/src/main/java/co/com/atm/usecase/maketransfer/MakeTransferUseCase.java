@@ -29,7 +29,7 @@ public class MakeTransferUseCase {
                 .finalBalance(finalBalance)
                 .description(description)
                 .build();
-        return transactionRepository.save(transaction);
+        return transactionRepository.saveTransaction(transaction);
     }
 
     public void makeTransfer(Long sourceAccountId, Long destinationAccountId, BigDecimal amount){
