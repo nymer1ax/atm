@@ -4,7 +4,7 @@ import co.com.atm.model.account.Account;
 import co.com.atm.model.transaction.Transaction;
 import co.com.atm.model.transaction.TransactionAction;
 import co.com.atm.model.transaction.Transfer;
-import co.com.atm.usecase.accountusecase.AccountUsecaseUseCase;
+import co.com.atm.usecase.accountusecase.AccountUseCase;
 import co.com.atm.usecase.checktransactionhistory.CheckTransactionHistoryUseCase;
 import co.com.atm.usecase.transactions.TransactionsUseCase;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
 public class ApiRest {
-    private final AccountUsecaseUseCase accountUsecaseUseCase;
+    private final AccountUseCase accountUsecaseUseCase;
     private final CheckTransactionHistoryUseCase checkTransactionHistoryUseCase;
     private final TransactionsUseCase transactionsUseCase;
 

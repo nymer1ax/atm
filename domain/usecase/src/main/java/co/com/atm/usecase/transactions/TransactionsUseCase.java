@@ -5,7 +5,7 @@ import co.com.atm.model.account.gateways.AccountRepository;
 import co.com.atm.model.transaction.Transaction;
 import co.com.atm.model.transaction.gateways.TransactionRepository;
 import co.com.atm.model.transactiontype.TransactionType;
-import co.com.atm.usecase.accountusecase.AccountUsecaseUseCase;
+import co.com.atm.usecase.accountusecase.AccountUseCase;
 import co.com.atm.usecase.checkbalance.CheckBalanceUseCase;
 import co.com.atm.usecase.exceptions.AccountNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class TransactionsUseCase {
 
-    private final AccountUsecaseUseCase accountUsecaseUseCase;
+    private final AccountUseCase accountUsecaseUseCase;
     private final CheckBalanceUseCase checkBalanceUseCase;
     private final AccountRepository accountRepository;
     private final TransactionRepository transactionRepository;

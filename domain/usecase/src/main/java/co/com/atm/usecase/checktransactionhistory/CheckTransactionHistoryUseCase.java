@@ -3,16 +3,15 @@ package co.com.atm.usecase.checktransactionhistory;
 import co.com.atm.model.account.Account;
 import co.com.atm.model.transaction.Transaction;
 import co.com.atm.model.transaction.gateways.TransactionRepository;
-import co.com.atm.usecase.accountusecase.AccountUsecaseUseCase;
+import co.com.atm.usecase.accountusecase.AccountUseCase;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class CheckTransactionHistoryUseCase {
 
-    private final AccountUsecaseUseCase accountUsecaseUseCase;
+    private final AccountUseCase accountUsecaseUseCase;
 
     private final TransactionRepository transactionRepository;
 

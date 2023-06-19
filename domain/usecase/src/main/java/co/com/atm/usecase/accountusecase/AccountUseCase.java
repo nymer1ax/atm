@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class AccountUsecaseUseCase {
+public class AccountUseCase {
 
     private final AccountRepository accountRepository;
 

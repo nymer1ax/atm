@@ -60,6 +60,7 @@ public class MapperObject {
                 .amount(transactionDataEntity.getAmount())
                 .finalBalance(transactionDataEntity.getFinalBalance())
                 .description(transactionDataEntity.getDescription())
+                .accountId(transactionDataEntity.getAccountId())
                 .build();
     }
 }
