@@ -86,7 +86,7 @@ class AccountUseCaseTest {
 
         // Act
         List<Account> result = accountUsecase.accounts();
-    
+
         assertEquals(accounts, result);
         verify(accountRepository).findAllAccounts();
     }
