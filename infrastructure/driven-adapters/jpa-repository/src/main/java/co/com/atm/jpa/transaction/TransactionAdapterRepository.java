@@ -10,7 +10,9 @@ import jakarta.transaction.Transactional;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class TransactionAdapterRepository extends AdapterOperations<Transaction, TransactionDataEntity, Long, TransactionDataRepository> implements TransactionRepository {
@@ -38,7 +40,7 @@ public class TransactionAdapterRepository extends AdapterOperations<Transaction,
 
     @Override
     public List<Transaction> findAllTransactions() {
-        return  mapperObjects.mapToTransactions(repository.findAll());
+        return  mapperObjects.mapToTransactions(repository.findAll()).stream().sorted(Comparator.comparing(Transaction::getId)).collect(Collectors.toList());
     }
 }
 

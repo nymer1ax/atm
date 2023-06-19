@@ -21,7 +21,6 @@ public class TransactionsUseCase {
     private final TransactionRepository transactionRepository;
     public Transaction makeWithdrawal(Long accountId, BigDecimal amount){
         Account account = accountUsecaseUseCase.validateAccountExistence(accountId);
-        checkBalanceUseCase.validateBalance(accountId, amount);
         BigDecimal newBalance = account.getBalance().subtract(amount);
         account.setBalance(newBalance);
         Transaction withdrawal = this.makeTransaction(accountId, TransactionType.WITHDRAWAL, amount, newBalance, "Withdrawal");
@@ -68,8 +67,6 @@ public class TransactionsUseCase {
     public Transaction makeDeposit(Long accountId, BigDecimal amount) throws AccountNotFoundException {
 
         Account account = accountUsecaseUseCase.validateAccountExistence(accountId);
-
-        checkBalanceUseCase.validateBalance(accountId, amount);
 
         BigDecimal newBalance = account.getBalance().add(amount);
         account.setBalance(newBalance);
